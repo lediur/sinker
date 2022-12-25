@@ -14,7 +14,7 @@ To run a local dev server that watches for file changes:
   pnpm nx serve sinker
   ```
 
-- After the server has started, navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+- After the server has started, navigate to http://localhost:24242/. The app will automatically reload if you change any of the source files.
 
 ## Understand this workspace
 

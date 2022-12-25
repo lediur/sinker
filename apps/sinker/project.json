@@ -24,7 +24,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "sinker:build",
-        "dev": true
+        "dev": true,
+        "port": 24242
       },
       "configurations": {
         "development": {
