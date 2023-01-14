@@ -12,11 +12,10 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/preset-react": "^7.14.5",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "husky": "^8.0.2",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/core": "^7.20.7",
     "@nrwl/cypress": "15.4.1",
     "@nrwl/eslint-plugin-nx": "15.4.1",
     "@nrwl/jest": "15.4.1",
@@ -41,6 +40,7 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
+    "husky": "^8.0.2",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "less": "^4.1.3",
