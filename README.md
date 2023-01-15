@@ -10,7 +10,7 @@ To run a local dev server that watches for file changes:
 
 - Run
 
-  ```
+  ```sh
   pnpm nx serve sinker
   ```
 
