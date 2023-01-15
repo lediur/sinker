@@ -43,7 +43,7 @@
     },
     "@nrwl/next": {
       "application": {
-        "style": "less",
+        "style": "css",
         "linter": "eslint"
       }
     }
