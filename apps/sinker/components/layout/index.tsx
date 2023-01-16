@@ -49,8 +49,8 @@ export default function Layout({
       </main>
       <Dialog.Root open={addModalOpen} onOpenChange={handleOpenChange}>
         <Dialog.Portal>
-          <Dialog.Overlay />
-          <Dialog.Content>
+          <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+          <Dialog.Content className="fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 p-2 shadow dark:bg-zinc-800 md:w-96">
             <Dialog.Title>Add video</Dialog.Title>
             <Dialog.Description>
               <AddVideo />
