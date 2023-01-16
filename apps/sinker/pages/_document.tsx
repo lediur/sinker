@@ -4,7 +4,7 @@ import cx from "classnames";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" className="dark">
       <Head />
       <body
         className={cx(
@@ -12,6 +12,7 @@ export default function Document() {
           sfPro.variable,
           jetbrainsMono.variable,
           "font-sans",
+          "dark:bg-zinc-900 dark:text-zinc-50",
         )}
       >
         <Main />

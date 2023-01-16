@@ -29,7 +29,7 @@ export const Nav = () => (
         <NavLink
           href="/?globalmodal=add-url"
           as="/add"
-          className="flex items-center justify-start rounded bg-sky-500 p-1 px-2 hover:bg-sky-700"
+          className="flex items-center justify-start rounded bg-sky-500 p-1 px-2 hover:bg-sky-700 dark:bg-sky-700 dark:hover:bg-sky-800"
         >
           <Plus className="inline h-4 w-4" />
           <span>Add URL</span>
