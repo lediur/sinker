@@ -69,6 +69,7 @@ specifiers:
   react-wrap-balancer: ^0.3.0
   regenerator-runtime: 0.13.7
   tailwindcss: 3.2.4
+  ts-brand: ^0.0.2
   ts-jest: 28.0.5
   ts-node: 10.9.1
   tslib: ^2.4.1
@@ -104,6 +105,7 @@ dependencies:
   react-hotkeys-hook: 4.3.2_biqbaboplfbrettd7655fr4n2y
   react-wrap-balancer: 0.3.0_react@18.2.0
   regenerator-runtime: 0.13.7
+  ts-brand: 0.0.2
   tslib: 2.4.1
 
 devDependencies:
@@ -11265,6 +11267,10 @@ packages:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
     dev: true
+
+  /ts-brand/0.0.2:
+    resolution: {integrity: sha512-UhSzWY4On9ZHIj6DKkRYVN/8OaprbLAZ3b/Y2AJwdl6oozSABsQ0PvwDh4vOVdkvOtWQOkIrjctZ1kj8YfF3jA==}
+    dev: false
 
   /ts-jest/28.0.5_pjrw52ypf7t5xbdze3uwhe5nbq:
     resolution: {integrity: sha512-Sx9FyP9pCY7pUzQpy4FgRZf2bhHY3za576HMKJFs+OnQ9jS96Du5vNsDKkyedQkik+sEabbKAnCliv9BEsHZgQ==}
