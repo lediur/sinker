@@ -82,6 +82,7 @@ specifiers:
   vite: ^4.0.4
   vitest: 0.26.2
   webpack: ^5.75.0
+  yt-dlp-wrap: ^2.3.11
 
 dependencies:
   '@next/font': 13.1.1
@@ -112,6 +113,7 @@ dependencies:
   regenerator-runtime: 0.13.7
   ts-brand: 0.0.2
   tslib: 2.4.1
+  yt-dlp-wrap: 2.3.11
 
 devDependencies:
   '@babel/core': 7.20.12
@@ -12094,3 +12096,7 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /yt-dlp-wrap/2.3.11:
+    resolution: {integrity: sha512-B0982YLawUC6C8V6hA88bC+EvZ1Mu/dSY+4VcQ8fa60dp1ILT/YWAl4AeowTH+wrrdg6aL7vCXTxlkeacZd5kg==}
+    dev: false
