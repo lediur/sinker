@@ -110,7 +110,11 @@ export default function Layout({
         <Command.Input
           value={search}
           onValueChange={(newValue) => setSearch(newValue)}
-          placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          placeholder={
+            page == null
+              ? "Type a command..."
+              : "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
           className="w-full rounded p-4 py-4 pr-0 font-mono dark:bg-zinc-700 md:p-2"
         />
         {page == null ? (
