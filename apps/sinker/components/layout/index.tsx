@@ -1,11 +1,19 @@
 import { Nav } from "@/components/layout/nav";
-import { AddVideo } from "@/components/modals/addVideo";
-import * as Dialog from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { CommandDialog } from "vendor/cmdk/DialogWithClassnames";
 import Meta from "./meta";
+import { Command } from "cmdk";
+import { Brand, make as brand } from "ts-brand";
+import {
+  useHotkeys,
+  HotkeyCallback,
+  useHotkeysContext,
+} from "react-hotkeys-hook";
+
+type PageKey = Brand<string, "pageKey">;
+const PageKey = brand<PageKey>();
 
 export default function Layout({
   meta,
@@ -21,17 +29,46 @@ export default function Layout({
   const router = useRouter();
   const [addModalOpen, setModalOpen] = useState(false);
   const noModalsOpen = useMemo(() => !addModalOpen, [addModalOpen]);
+  const [pages, setPages] = useState<PageKey[]>([]);
+  const [search, setSearch] = useState<string | undefined>(undefined);
+  const { enableScope, disableScope } = useHotkeysContext();
+
+  const handleOpenAddModal = useCallback(() => {
+    setModalOpen(true);
+    enableScope("addModal");
+  }, [setModalOpen, enableScope]);
+
+  const handleCloseAddModal = useCallback(() => {
+    setModalOpen(false);
+    disableScope("addModal");
+    router.push("/");
+  }, [setModalOpen, disableScope, router]);
 
   const handleOpenChange = useCallback((open: boolean) => {
-    setModalOpen(open);
-    router.push("/");
+    if (open) {
+      handleOpenAddModal();
+    } else {
+      handleCloseAddModal();
+    }
   }, []);
 
   useEffect(() => {
     if (router.query.globalmodal === "add-url" && noModalsOpen) {
-      setModalOpen(true);
+      handleOpenAddModal();
     }
   }, [router.query.globalmodal]);
+
+  useHotkeys(
+    "meta+k",
+    () => {
+      handleOpenAddModal();
+    },
+    {
+      enableOnFormTags: true,
+      preventDefault: true,
+    },
+    [handleOpenAddModal],
+  );
 
   return (
     <>
@@ -47,20 +84,19 @@ export default function Layout({
       <main className="flex w-screen flex-col items-center justify-center py-32">
         {children}
       </main>
-      <Dialog.Root open={addModalOpen} onOpenChange={handleOpenChange}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 p-2 shadow dark:bg-zinc-800 md:w-96">
-            <Dialog.Title>Add video</Dialog.Title>
-            <Dialog.Description>
-              <AddVideo />
-            </Dialog.Description>
-            <Dialog.Close>
-              <X />
-            </Dialog.Close>
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+      <CommandDialog
+        open={addModalOpen}
+        onOpenChange={handleOpenChange}
+        dialogOverlayClassName="fixed inset-0 bg-black/50"
+        dialogContentClassName="fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 p-2 shadow dark:bg-zinc-800 md:w-96"
+      >
+        <Command.Input
+          value={search}
+          onValueChange={(newValue) => setSearch(newValue)}
+          className="w-full dark:bg-zinc-700"
+        />
+        <Command.List></Command.List>
+      </CommandDialog>
     </>
   );
 }
