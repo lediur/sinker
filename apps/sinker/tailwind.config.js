@@ -14,6 +14,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        128: "32rem",
+      },
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
         mono: ["var(--font-mono-jb)", ...fontFamily.mono],

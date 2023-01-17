@@ -11,7 +11,7 @@ type NavLinkProps = NavigationMenu.NavigationMenuLinkProps & {
   as?: string;
 };
 
-const NavLink = ({ href, as, ...props }: NavLinkProps) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, as, ...props }) => {
   const router = useRouter();
   const isActive = router.asPath === href;
 
@@ -22,7 +22,7 @@ const NavLink = ({ href, as, ...props }: NavLinkProps) => {
   );
 };
 
-export const Nav = () => (
+export const Nav: React.FC = () => (
   <NavigationMenu.Root>
     <NavigationMenu.List>
       <NavigationMenu.Item>

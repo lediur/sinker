@@ -11,9 +11,14 @@ import {
   HotkeyCallback,
   useHotkeysContext,
 } from "react-hotkeys-hook";
+import { ListPlus } from "lucide-react";
 
 type PageKey = Brand<string, "pageKey">;
 const PageKey = brand<PageKey>();
+
+const PageKeys = {
+  addUrl: PageKey("addUrl"),
+} as const;
 
 export default function Layout({
   meta,
@@ -27,28 +32,35 @@ export default function Layout({
   children: ReactNode;
 }) {
   const router = useRouter();
-  const [addModalOpen, setModalOpen] = useState(false);
-  const noModalsOpen = useMemo(() => !addModalOpen, [addModalOpen]);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const noModalsOpen = useMemo(() => !commandPaletteOpen, [commandPaletteOpen]);
   const [pages, setPages] = useState<PageKey[]>([]);
   const [search, setSearch] = useState<string | undefined>(undefined);
   const { enableScope, disableScope } = useHotkeysContext();
+  const page = pages[pages.length - 1] || undefined;
+
+  const handleOpenCommandPalette = useCallback(() => {
+    setCommandPaletteOpen(true);
+    enableScope("addModal");
+  }, [setCommandPaletteOpen, enableScope]);
 
   const handleOpenAddModal = useCallback(() => {
-    setModalOpen(true);
-    enableScope("addModal");
-  }, [setModalOpen, enableScope]);
+    handleOpenCommandPalette();
+    setPages((pages) => [...pages, PageKeys.addUrl]);
+  }, [handleOpenCommandPalette]);
 
-  const handleCloseAddModal = useCallback(() => {
-    setModalOpen(false);
+  const handleCloseCommandPalette = useCallback(() => {
+    setCommandPaletteOpen(false);
     disableScope("addModal");
+    setPages([]);
     router.push("/");
-  }, [setModalOpen, disableScope, router]);
+  }, [setCommandPaletteOpen, disableScope, router]);
 
-  const handleOpenChange = useCallback((open: boolean) => {
+  const handleCommandPaletteVisibleChange = useCallback((open: boolean) => {
     if (open) {
-      handleOpenAddModal();
+      handleOpenCommandPalette();
     } else {
-      handleCloseAddModal();
+      handleCloseCommandPalette();
     }
   }, []);
 
@@ -61,13 +73,13 @@ export default function Layout({
   useHotkeys(
     "meta+k",
     () => {
-      handleOpenAddModal();
+      handleOpenCommandPalette();
     },
     {
       enableOnFormTags: true,
       preventDefault: true,
     },
-    [handleOpenAddModal],
+    [handleOpenCommandPalette],
   );
 
   return (
@@ -85,17 +97,43 @@ export default function Layout({
         {children}
       </main>
       <CommandDialog
-        open={addModalOpen}
-        onOpenChange={handleOpenChange}
+        open={commandPaletteOpen}
+        onOpenChange={handleCommandPaletteVisibleChange}
         dialogOverlayClassName="fixed inset-0 bg-black/50"
-        dialogContentClassName="fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 p-2 shadow dark:bg-zinc-800 md:w-96"
+        dialogContentClassName="font-sans fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 shadow dark:bg-zinc-800 p-4 md:w-128"
       >
+        {page === PageKeys.addUrl ? (
+          <header className=" p-2">
+            <h1>Add a URL</h1>
+          </header>
+        ) : null}
         <Command.Input
           value={search}
           onValueChange={(newValue) => setSearch(newValue)}
-          className="w-full dark:bg-zinc-700"
+          className="w-full rounded p-4 font-mono dark:bg-zinc-700"
         />
-        <Command.List></Command.List>
+        {page == null ? (
+          <Command.List>
+            <>
+              <Command.Empty>
+                All those commands lost, like tears in rain...
+              </Command.Empty>
+              <Command.Item
+                value="add url"
+                className="flex items-center justify-start rounded border p-2 dark:bg-zinc-700 dark:aria-selected:border-zinc-400 dark:aria-selected:bg-zinc-600"
+                onSelect={handleOpenAddModal}
+              >
+                <ListPlus />
+                <span>Add URL</span>
+              </Command.Item>
+            </>
+          </Command.List>
+        ) : null}
+        {page === PageKeys.addUrl ? (
+          <section className="p-2">
+            Paste a URL to a video, channel, or playlist
+          </section>
+        ) : null}
       </CommandDialog>
     </>
   );
