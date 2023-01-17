@@ -92,5 +92,10 @@
   },
   "resolutions": {
     "css-loader": "1.0.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "react-hotkeys-hook@4.3.2": "patches/react-hotkeys-hook@4.3.2.patch"
+    }
   }
 }

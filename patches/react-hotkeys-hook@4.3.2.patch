@@ -1,0 +1,31 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 32d1f9a872f7e24b64a7f8ce594b12b3f5b81ab5..6fcc58ddf37649dc2854981af923dd2459d881c5 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,6 +1,6 @@
+ import useHotkeys from './useHotkeys';
+-import type { Options } from './types';
++import type { Options, HotkeyCallback, HotkeysEvent } from './types';
+ import { HotkeysProvider, useHotkeysContext } from './HotkeysProvider';
+ import { isHotkeyPressed } from './isHotkeyPressed';
+ import useRecordHotkeys from './useRecordHotkeys';
+-export { useHotkeys, useRecordHotkeys, useHotkeysContext, isHotkeyPressed, HotkeysProvider, Options, };
++export { useHotkeys, useRecordHotkeys, useHotkeysContext, isHotkeyPressed, HotkeysProvider, Options, HotkeyCallback, HotkeysEvent, };
+diff --git a/src/index.ts b/src/index.ts
+index 141a463ea8c48f48d7b1e22138c0e5896f7f9369..6fe702087dddbe021a37286f0ae9a10c48563dac 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -1,5 +1,5 @@
+ import useHotkeys from './useHotkeys'
+-import type { Options } from './types'
++import type { Options, HotkeyCallback, HotkeysEvent } from './types'
+ import { HotkeysProvider, useHotkeysContext } from './HotkeysProvider'
+ import { isHotkeyPressed } from './isHotkeyPressed'
+ import useRecordHotkeys from './useRecordHotkeys'
+@@ -11,4 +11,6 @@ export {
+   isHotkeyPressed,
+   HotkeysProvider,
+   Options,
++  HotkeyCallback,
++  HotkeysEvent,
+ }
