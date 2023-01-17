@@ -86,7 +86,7 @@ export default function Layout({
     <>
       <Meta {...meta} />
       <div className="w-full bg-white/0">
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+        <div className="mx-4 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto xl:px-4">
           <Link href="/" className="font-display flex items-center text-2xl">
             <p>Sinker</p>
           </Link>
@@ -100,17 +100,18 @@ export default function Layout({
         open={commandPaletteOpen}
         onOpenChange={handleCommandPaletteVisibleChange}
         dialogOverlayClassName="fixed inset-0 bg-black/50"
-        dialogContentClassName="font-sans fixed top-1/2 left-1/2 mx-auto w-full -translate-y-1/2 -translate-x-1/2 rounded bg-zinc-50 shadow dark:bg-zinc-800 p-4 md:w-128"
+        dialogContentClassName="font-sans fixed md:top-1/4 md:left-1/2 top-0 left-0 right-0 md:mx-auto md:max-w-prose w-full md:-translate-y-1/2 md:m-0 md:-translate-x-1/2 rounded bg-zinc-50 shadow dark:bg-zinc-800 p-4 md:w-prose"
       >
         {page === PageKeys.addUrl ? (
           <header className=" p-2">
-            <h1>Add a URL</h1>
+            <h1 className="font-semibold md:text-xl">Add a URL</h1>
           </header>
         ) : null}
         <Command.Input
           value={search}
           onValueChange={(newValue) => setSearch(newValue)}
-          className="w-full rounded p-4 font-mono dark:bg-zinc-700"
+          placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          className="w-full rounded p-4 py-4 pr-0 font-mono dark:bg-zinc-700 md:p-2"
         />
         {page == null ? (
           <Command.List>
@@ -130,7 +131,7 @@ export default function Layout({
           </Command.List>
         ) : null}
         {page === PageKeys.addUrl ? (
-          <section className="p-2">
+          <section className="p-2 text-sm">
             Paste a URL to a video, channel, or playlist
           </section>
         ) : null}
