@@ -1,6 +1,18 @@
-import { Queue } from "bullmq";
+import { Queue, Worker } from "bullmq";
 
-const videosQ = new Queue("videos");
+export const QUEUE_VIDEO = "videos";
+
+export type VideoQueuePayload = AddImmediateProps;
+
+export type VideoQueueResponse = never;
+
+export type VideoQueueJobNames = "download";
+
+const videosQ = new Queue<
+  VideoQueuePayload,
+  VideoQueueResponse,
+  VideoQueueJobNames
+>(QUEUE_VIDEO);
 
 interface AddImmediateProps {
   url: string;
