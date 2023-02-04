@@ -12,12 +12,15 @@
     "@next/font": "13.1.1",
     "@nrwl/next": "15.4.1",
     "@prisma/client": "^4.8.1",
+    "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-navigation-menu": "^1.1.1",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
     "classnames": "^2.3.2",
+    "cmdk": "^0.1.21",
     "core-js": "^3.27.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
@@ -29,9 +32,12 @@
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hotkeys-hook": "^4.3.2",
     "react-wrap-balancer": "^0.3.0",
     "regenerator-runtime": "0.13.7",
-    "tslib": "^2.4.1"
+    "ts-brand": "^0.0.2",
+    "tslib": "^2.4.1",
+    "yt-dlp-wrap": "^2.3.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -87,5 +93,10 @@
   },
   "resolutions": {
     "css-loader": "1.0.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "react-hotkeys-hook@4.3.2": "patches/react-hotkeys-hook@4.3.2.patch"
+    }
   }
 }

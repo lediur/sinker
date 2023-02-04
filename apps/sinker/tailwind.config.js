@@ -4,15 +4,19 @@ const { join } = require("path");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     join(
       __dirname,
-      '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+      "{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}",
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
     extend: {
+      spacing: {
+        128: "32rem",
+      },
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
         mono: ["var(--font-mono-jb)", ...fontFamily.mono],
