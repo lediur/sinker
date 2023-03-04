@@ -1,5 +1,4 @@
-// prettier.config.js
-module.exports = {
+module.export = {
   bracketSpacing: true,
   semi: true,
   trailingComma: "all",

@@ -2,6 +2,7 @@
   "name": "sinker",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
