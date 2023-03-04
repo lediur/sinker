@@ -2,16 +2,21 @@
   "name": "sinker",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "bootstrap:db": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env tsx tools/bootstrap/database.ts",
+    "docker:up": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose up",
+    "docker:start": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose up -d",
+    "docker:down": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose down",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "prebuild": "prisma generate",
-    "predev": "prisma generate"
+    "predev": "prisma generate",
+    "checkout:env": "dotenv-updater"
   },
   "dependencies": {
     "@next/font": "13.1.1",
     "@nrwl/next": "15.4.1",
-    "@prisma/client": "^4.8.1",
     "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.2",
     "@types/node": "18.11.18",
@@ -19,6 +24,7 @@
     "@types/react-dom": "18.0.10",
     "classnames": "^2.3.2",
     "core-js": "^3.27.1",
+    "envsafe": "^2.0.3",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "focus-trap-react": "^10.0.2",
@@ -26,6 +32,8 @@
     "lucide-react": "0.105.0-alpha.4",
     "ms": "^2.1.3",
     "next": "13.1.1",
+    "pg": "^8.9.0",
+    "postgraphile": "^4.13.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -36,6 +44,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-react": "^7.18.6",
+    "@caxy/dotenv-updater": "1.0.9",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@nrwl/cypress": "15.4.1",
@@ -52,6 +61,7 @@
     "@types/jest": "28.1.1",
     "@types/ms": "^0.7.31",
     "@types/node": "16.11.7",
+    "@types/pg": "^8.6.6",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
@@ -60,6 +70,7 @@
     "babel-jest": "28.1.1",
     "concurrently": "^7.6.0",
     "cypress": "^11.2.0",
+    "env-cmd": "^10.1.0",
     "eslint": "~8.15.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "8.1.0",
@@ -75,17 +86,22 @@
     "postcss": "8.4.21",
     "prettier": "^2.8.2",
     "prettier-plugin-tailwindcss": "^0.2.1",
-    "prisma": "^4.8.1",
     "react-test-renderer": "18.2.0",
     "tailwindcss": "3.2.4",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
+    "tsx": "^3.12.3",
     "typescript": "4.9.4",
     "vite": "^4.0.4",
     "vitest": "0.26.2",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "zx": "^7.2.0"
   },
   "resolutions": {
     "css-loader": "1.0.1"
+  },
+  "dotenvUpdater": {
+    "envFile": ".env.local",
+    "distFile": "example.env.local"
   }
 }
