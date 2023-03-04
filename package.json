@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "bootstrap:db": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env tsx tools/bootstrap/database.ts",
     "docker:up": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose up",
     "docker:start": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose up -d",
     "docker:down": "env-cmd --no-override -f .env.local env-cmd --no-override -f .env docker-compose down",
